@@ -24,7 +24,6 @@ markdown-it-py==3.0.0
 MarkupSafe==2.1.5
 matplotlib==3.9.2
 mdurl==0.1.2
-mediapipe==0.10.14
 ml-dtypes==0.4.0
 narwhals==1.5.2
 numpy==2.0.1
@@ -59,4 +58,5 @@ tzdata==2024.1
 urllib3==2.2.2
 streamlit
 opencv-python-headless
-mediapipe==0.8.10
+mediapipe==0.10.14
+
