@@ -3,21 +3,20 @@ import imageio
 import PIL.Image
 
 def main():
-    st.title("Video Capture with imageio and Streamlit")
+    st.title("Video Playback with imageio and Streamlit")
 
-    # Configurar el dispositivo de la cámara
-    camera = imageio.get_reader('<video0>')
+    video_file = st.sidebar.file_uploader("Upload a video file", type=["mp4", "mov", "avi"])
 
-    stframe = st.empty()
+    if video_file is not None:
+        stframe = st.empty()
 
-    while True:
-        frame = camera.get_next_data()
-        frame = PIL.Image.fromarray(frame)
+        reader = imageio.get_reader(video_file)
+        for frame in reader:
+            img = PIL.Image.fromarray(frame)
+            stframe.image(img)
 
-        stframe.image(frame)
-
-        if st.sidebar.button("Cerrar"):
-            break
+            # Simula la velocidad de los fotogramas
+            st.time.sleep(1/30)  # Ajusta según el FPS del video
 
 if __name__ == "__main__":
     main()
