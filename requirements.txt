@@ -27,8 +27,6 @@ mdurl==0.1.2
 ml-dtypes==0.4.0
 narwhals==1.5.2
 numpy==2.0.1
-opencv-contrib-python==4.9.0.80
-opencv-python==4.9.0.80
 opt-einsum==3.3.0
 packaging==24.1
 pandas==2.2.2
@@ -55,6 +53,7 @@ tornado==6.4.1
 typing_extensions==4.12.2
 tzdata==2024.1
 urllib3==2.2.2
-streamlit==1.33.0
-mediapipe==0.10.11
+streamlit
+opencv-python-headless
+mediapipe==0.10.14
 
