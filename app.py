@@ -1,22 +1,37 @@
 import streamlit as st
-import imageio
-import PIL.Image
+import cv2
 
 def main():
-    st.title("Video Playback with imageio and Streamlit")
+    st.title("Video Capture with OpenCV and Streamlit")
 
-    video_file = st.sidebar.file_uploader("Upload a video file", type=["mp4", "mov", "avi"])
+    # Selección de la cámara
+    cam_index = st.sidebar.selectbox("Seleccione la cámara", options=[0, 1, 2, 3], index=0)
 
-    if video_file is not None:
-        stframe = st.empty()
+    # Configuración de la cámara
+    cap = cv2.VideoCapture(cam_index)
 
-        reader = imageio.get_reader(video_file)
-        for frame in reader:
-            img = PIL.Image.fromarray(frame)
-            stframe.image(img)
+    if not cap.isOpened():
+        st.error("No se pudo acceder a la cámara.")
+        return
 
-            # Simula la velocidad de los fotogramas
-            st.time.sleep(1/30)  # Ajusta según el FPS del video
+    stframe = st.empty()
+
+    # Loop de captura de video
+    while True:
+        ret, frame = cap.read()
+        if not ret:
+            st.error("No se pudo leer el frame de la cámara.")
+            break
+
+        # Mostrar el frame en Streamlit
+        stframe.image(frame, channels="BGR")
+
+        # Salir del loop cuando el usuario cierre la aplicación
+        if st.sidebar.button("Cerrar"):
+            break
+
+    # Liberar la cámara
+    cap.release()
 
 if __name__ == "__main__":
     main()
