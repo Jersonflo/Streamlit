@@ -5,7 +5,7 @@ def main():
     st.title("Video Capture with OpenCV and Streamlit")
 
     # Intentar capturar la cámara
-    cap = cv2.VideoCapture(1)
+    cap = cv2.VideoCapture(0)
 
     if not cap.isOpened():
         st.error("No se pudo acceder a la cámara.")
