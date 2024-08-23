@@ -59,4 +59,4 @@ tzdata==2024.1
 urllib3==2.2.2
 streamlit
 opencv-python-headless
-mediapipe
+mediapipe==0.8.10
