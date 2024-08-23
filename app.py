@@ -1,5 +1,6 @@
 import streamlit as st
 import cv2
+import numpy as np
 
 def main():
     st.title("Video Capture with OpenCV and Streamlit")
@@ -23,8 +24,11 @@ def main():
             st.error("No se pudo leer el frame de la cámara.")
             break
 
+        # Convertir el frame a formato compatible con Streamlit (RGB)
+        frame = cv2.cvtColor(frame, cv2.COLOR_BGR2RGB)
+
         # Mostrar el frame en Streamlit
-        stframe.image(frame, channels="BGR")
+        stframe.image(frame)
 
         # Salir del loop cuando el usuario cierre la aplicación
         if st.sidebar.button("Cerrar"):
